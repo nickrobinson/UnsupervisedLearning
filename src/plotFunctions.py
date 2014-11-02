@@ -1,7 +1,10 @@
 import numpy as np
+from scipy.spatial.distance import cdist, pdist
 import matplotlib.pyplot as plt
 
-def plotPCAData(reduced_data, km):
+from sklearn.cluster import KMeans
+
+def plotData(reduced_data, km, algorithm):
   # Step size of the mesh. Decrease to increase the quality of the VQ.
   h = .02     # point in the mesh [x_min, m_max]x[y_min, y_max].
 
@@ -28,10 +31,45 @@ def plotPCAData(reduced_data, km):
   plt.scatter(centroids[:, 0], centroids[:, 1],
               marker='x', s=169, linewidths=3,
               color='w', zorder=10)
-  plt.title('K-means clustering on the digits dataset (PCA-reduced data)\n'
+  plt.title('K-means clustering on the digits dataset (' + algorithm + '-reduced data)\n'
             'Centroids are marked with white cross')
   plt.xlim(x_min, x_max)
   plt.ylim(y_min, y_max)
   plt.xticks(())
   plt.yticks(())
+  plt.show()
+
+def graphVariance(reduced_data):
+  # Determine your k range
+  k_range = range(1,14)
+
+  # Fit the kmeans model for each n_clusters = k
+  k_means_var = [KMeans(n_clusters=k).fit(reduced_data) for k in k_range]
+
+  # Pull out the cluster centers for each model
+  centroids = [X.cluster_centers_ for X in k_means_var]
+
+  # Calculate the Euclidean distance from 
+  # each point to each cluster center
+  k_euclid = [cdist(reduced_data, cent, 'euclidean') for cent in centroids]
+  dist = [np.min(ke,axis=1) for ke in k_euclid]
+
+  # Total within-cluster sum of squares
+  wcss = [sum(d**2) for d in dist]
+
+  # The total sum of squares
+  tss = sum(pdist(reduced_data)**2)/reduced_data.shape[0]
+
+  # The between-cluster sum of squares
+  bss = tss - wcss
+
+  # elbow curve
+  fig = plt.figure()
+  ax = fig.add_subplot(111)
+  ax.plot(k_range, bss/tss*100, 'b*-')
+  ax.set_ylim((0,100))
+  plt.grid(True)
+  plt.xlabel('n_clusters')
+  plt.ylabel('Percentage of variance explained')
+  plt.title('Variance Explained vs. k')
   plt.show()

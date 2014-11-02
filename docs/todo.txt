@@ -1,0 +1,52 @@
+1.  Find or code implementation of 
+    a.  k-means clustering
+    b.  Expectation Maximization
+    c.  PCA
+    d.  ICA
+    e.  Randomized Projects
+    f.  another feature selection algorithm
+2.  Identify two datasets, ideally the ones used on the first assignment. For each dataset, do the following and describe what you see
+    a.  Run k-means clustering (save these cluster labels for later)
+    b.  Run EM (save these cluster labels for later)
+    c.  Apply PCA (save this reduced dataset for later)
+    d.  Apply ICA (save this reduced dataset for later)
+    e.  Apply RP (save this reduced dataset for later)
+    f.  Apply another FS algorithm (save this reduced dataset for later)
+    g.  Run k-means clustering on the PCA reduced dataset
+    h.  Run k-means clustering on the ICA reduced dataset
+    i.  Run k-means clustering on the RP reduced dataset
+    j.  Run k-means clustering on the other reduced dataset
+    k.  Run EM on the PCA reduced dataset
+    l.  Run EM on the ICA reduced dataset
+    m.  Run EM on the RP reduced dataset
+    n.  Run EM on the other reduced dataset
+3.  Pick one dataset from assignment 1 and re-run your ANN using
+    a.  The PCA reduced dataset
+    b.  The ICA reduced dataset
+    c.  The RP reduced dataset
+    d.  The other reduced dataset
+    e.  The k-means clustered dataset using the cluster labels as new attributes
+    f.  The EM clustered dataset using the cluster labels as new attributes
+4.  The 10pp analysis PDF should contain:
+    a.  Dataset explanation
+    b.  Explanation of methods
+    c.  How we chose k 
+    d.  Description of clusters
+    e.  Why did we get the clusters we did?
+    f.  Do they make sense?
+    g.  Did the clusters align with existing labels?
+    h.  Compare and contrast the different algorithms
+    i.  What changes to improve performance?
+    j.  How much performance was due to the chosen problems?
+    k.  Think of more questions and answer them with explicit data
+    l.  Describe how the data looks in the new spaces created
+    m.  For PCA, what is the distribution of eigenvalues?
+    n.  For ICA, how kurtotic are the distributions?
+    o.  Do the ICA axes capture anything meaningful?
+    p.  Assuming you only generate k projections (i.e., you do dimensionality reduction), how well is the data reconstructed by the randomized projects?
+    q.  Assuming you only generate k projections (i.e., you do dimensionality reduction), how well is the data reconstructed by PCA?
+    r.  How much variation when you re-ran RP several times?
+    s.  Did you get the same clusters on the reduced datasets?
+    t.  How did the ANN perform on the reduced datasets? Speed? Any other changes?
+5.  README.txt with instructions to run code
+6.  Submit packaged README.txt, code, analysis PDF and supporting files
