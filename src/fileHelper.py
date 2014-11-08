@@ -47,5 +47,5 @@ class Wines:
             #Skip header line and seed data/targets
             next(file_reader, None)
             for row in file_reader:
-                self.data.append(row[:10])
+                self.data.append(row[:11])
                 self.target.append(row[11])
